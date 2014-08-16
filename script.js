@@ -1,5 +1,5 @@
-var form = document.getElementsByTagName("form")[0],
-           output = document.getElementById("output"),
+var myForm = document.getElementsByTagName("form")[0],
+           myOutput = document.getElementById("output"),
            ajax = function(form, ouput){
                 var xhr = window.XMLHttpRequest ? 
                          new XMLHttpRequest() : 
@@ -57,7 +57,7 @@ var form = document.getElementsByTagName("form")[0],
             xhr.send(data);
         };
 
-form.addEventListener("submit", function(event){
+myForm.addEventListener("submit", function(event){
     event.preventDefault();
-    ajax(this, output);
+    ajax(this, myOutput);
 }, false);
