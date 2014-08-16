@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8" />
+	<title>Upload files with Ajax</title>
+	<style type = "text/css">
+		img{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<form action = "upload.php" method = "post" enctype = "multipart/form-data">
+		<section>
+			<label for = "myFile">Upload your file:</label>
+			<input type = "file" id = "myFile" multiple accept = "image/jpeg, image/png, image/gif" />
+		</section>
+		
+		<input type = "submit" />
+	</form>
+
+	<section id = "output"></section>
+
+	<script type = "text/javascript" src = "script.js"></script>
+</body>
+</html>
