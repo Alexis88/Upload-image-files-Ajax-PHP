@@ -23,7 +23,7 @@ var form = document.getElementsByTagName("form")[0],
 	            	data.append(elements[i].name, elements[i].value);
 	            }
 			}
-
+			
 			xhr.open("POST", url, true);
 			xhr.onreadystatechange = function(){
 	        	if (xhr.readyState == 4){
