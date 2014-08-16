@@ -22,17 +22,17 @@ foreach ($_FILES as $file){
 }
 
 if ($flag){
-    foreach ($_FILES as $file){
-        $type = substr($file['type'], strpos($file['type'], '/') + 1);
-        $name = microtime(true) . '.' . $type;
-        $tmp_name = $file['tmp_name'];
-        move_uploaded_file($tmp_name, $route . $name);
-        $response[] = $route . $name;
-    }
+	foreach ($_FILES as $file){
+		$type = substr($file['type'], strpos($file['type'], '/') + 1);
+		$name = str_shuffle($file['name']) . rand(1, 999999) . '.' . $type;
+		$tmp_name = $file['tmp_name'];
+		move_uploaded_file($tmp_name, $route . $name);
+		$response[] = $route . $name;
+	}
 
-    $ok = 'yes';
-    $values = "('" . implode("'), ('", $response) . "')";
-    $mysqli->query("INSERT INTO table (field) VALUES {$values}");
+	$ok = 'yes';
+	$values = "('" . implode("'), ('", $response) . "')";
+	$mysqli->query("INSERT INTO files (file) VALUES {$values}");
 }
 else{
     $ok = 'no';
