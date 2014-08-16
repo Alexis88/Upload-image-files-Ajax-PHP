@@ -1,6 +1,6 @@
 var myForm = document.getElementsByTagName("form")[0],
-           myOutput = document.getElementById("output"),
-           ajax = function(form, ouput){
+             myOutput = document.getElementById("output"),
+             ajax = function(form, ouput){
                 var xhr = window.XMLHttpRequest ? 
                          new XMLHttpRequest() : 
                          new ActiveXObject("Microsoft.XMLHTTP") || 
