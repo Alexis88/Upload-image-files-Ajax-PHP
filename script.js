@@ -28,7 +28,7 @@ var form = document.getElementsByTagName("form")[0],
 			xhr.onreadystatechange = function(){
 	        	if (xhr.readyState == 4){
 	            	output.innerHTML = null;
-	            	switch (xhr.status){
+	            	switch (xhr.status){ 
 		            	case 200:
 		                	var response = JSON.parse(xhr.responseText);
 		                    if (response.ok == "yes"){
