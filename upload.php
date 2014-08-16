@@ -15,7 +15,7 @@ $_POST = array_map(function($data) use ($mysqli){
 foreach ($_FILES as $file){
     $mimeType = getimagesize($file['tmp_name'])['mime'];
 
-	if ($file['error'] != UPLOAD_ERR_OK || !in_array($mimeType, $types)){
+    if ($file['error'] != UPLOAD_ERR_OK || !in_array($mimeType, $types)){
 		$flag = false;
 		break;
 	}
