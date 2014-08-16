@@ -6,7 +6,7 @@ var form = document.getElementsByTagName("form")[0],
  	 	 	 			  new ActiveXObject("Microsoft.XMLHTTP") || 
  	 	 	 			  new ActiveXObject("Msxml2.XMLHTTP"),
  	 	 	 			  elements = form.elements,
- 	 	 	 			  total = elements.length,
+ 	 	 	 			  total = elements.length, 
  	 	 	 			  url = form.action,
  	 	 	 			  data = new FormData();
     
