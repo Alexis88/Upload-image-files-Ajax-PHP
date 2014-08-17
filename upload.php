@@ -24,7 +24,7 @@ foreach ($_FILES as $file){
 if ($flag){
 	foreach ($_FILES as $file){
 		$type = substr($mimeType, strpos($file['type'], '/') + 1);
-		$name = str_shuffle($file['name'] . rand(1, 999999)) . '.' . $type;
+		$name = preg_replace('/^\.|\.$/', '', str_shuffle($file['name'] . rand(1, 999999))) . '.' . $type;
 		$tmp_name = $file['tmp_name'];
 		move_uploaded_file($tmp_name, $route . $name);
 		$response[] = $route . $name;
