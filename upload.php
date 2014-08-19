@@ -1,41 +1,47 @@
 <?php
+header('Content-Type: image/jpeg');
+include_once 'resize.php';
+$resize = new Resize();
 $mysqli = new mysqli ('server', 'user', 'password', 'bd');
 
 if ($mysqli->connect_error) exit ('Cannot connect to the database');
 
 $route = 'img/';
 $response = [];
-$types = ['image/jpeg', 'image/png', 'image/gif'];
-$flag = true;
+$types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+$errors = 0;
+$ok = 'no';
+$max_file_uploads = ini_get('max_file_uploads');
+$upload_max_filesize = substr(ini_get('upload_max_filesize'), 0, strpos(ini_get('upload_max_filesize'), 'M'));
 
 $_POST = array_map(function($data) use ($mysqli){
-    return $mysqli->real_escape_string(strip_tags($data));
+	return $mysqli->real_escape_string(strip_tags($data));
 }, $_POST);
 
-foreach ($_FILES as $file){
-    $mimeType = getimagesize($file['tmp_name'])['mime'];
-
-    if ($file['error'] != UPLOAD_ERR_OK || !in_array($mimeType, $types)){
-        $flag = false;
-        break;
-    }
-}
-
-if ($flag){
+if (count($_FILES) <= $max_file_uploads){
 	foreach ($_FILES as $file){
-		$type = substr($mimeType, strpos($file['type'], '/') + 1);
-		$name = preg_replace('/^\.|\.$/', '', str_shuffle($file['name'] . rand(1, 999999))) . '.' . $type;
-		$tmp_name = $file['tmp_name'];
-		move_uploaded_file($tmp_name, $route . $name);
-		$response[] = $route . $name;
+	    $mimeType = getimagesize($file['tmp_name'])['mime'];
+	    $size = filesize($file['tmp_name']) / 1048576;
+
+		if ($file['error'] == UPLOAD_ERR_OK && in_array($mimeType, $types) && $size <= $upload_max_filesize){
+			$type = substr($mimeType, strpos($file['type'], '/') + 1);
+			$name = preg_replace('/^\.|\.$/', '', str_shuffle($file['name'] . rand(1, 999999))) . '.' . $type;
+			if (move_uploaded_file($file['tmp_name'], $route . $name)){
+				$resize->newSize($route . $name, $route, $name);
+				$response[] = $route . $name;
+			}
+
+			$values = "('" . implode("'), ('", $response) . "')";
+			$mysqli->query("INSERT INTO files (file) VALUES {$values}");
+		}
+		else{
+			$errors++;
+		}
 	}
 
-	$ok = 'yes';
-	$values = "('" . implode("'), ('", $response) . "')";
-	$mysqli->query("INSERT INTO files (file) VALUES {$values}");
-}
-else{
-    $ok = 'no';
+	if ($errors < count($_FILES)){ 
+		$ok = 'yes';
+	}
 }
 
 echo json_encode(['ok' => $ok, 'dataFiles' => $response]);
