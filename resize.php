@@ -1,6 +1,5 @@
 <?php
 class Resize{
-	public $type;
 	public $width;
 	public $height;
 	public $oldWidth;
@@ -13,13 +12,12 @@ class Resize{
 	public $new;
 	public $canvas;
 
-	public function newSize($image, $route, $name){
+	public function newSize($image, $route, $name, $type){
 		$this->info = getimagesize($image);
 		$this->oldWidth = $this->info[0];
 		$this->oldHeight = $this->info[1];
-		$this->type = $this->info['mime'];
 
-		switch ($this->type){
+		switch ($type){
 			case 'image/jpeg': case 'image/jpg':
 				$this->new = imagecreatefromjpeg($image);
 				break;
