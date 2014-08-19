@@ -27,7 +27,7 @@ if (count($_FILES) <= $max_file_uploads){
 			$type = substr($mimeType, strpos($file['type'], '/') + 1);
 			$name = preg_replace('/^\.|\.$/', '', str_shuffle($file['name'] . rand(1, 999999))) . '.' . $type;
 			if (move_uploaded_file($file['tmp_name'], $route . $name)){
-				$resize->newSize($route . $name, $route, $name);
+				$resize->newSize($route . $name, $route, $name, $type);
 				$response[] = $route . $name;
 			}
 
