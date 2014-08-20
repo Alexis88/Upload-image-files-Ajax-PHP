@@ -8,7 +8,6 @@ if ($mysqli->connect_error) exit ('Cannot connect to the database');
 
 $route = 'img/';
 $response = [];
-$types = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
 $errors = 0;
 $ok = 'no';
 $max_file_uploads = ini_get('max_file_uploads');
@@ -20,17 +19,9 @@ $_POST = array_map(function($data) use ($mysqli){
 
 if (count($_FILES) <= $max_file_uploads){
 	foreach ($_FILES as $file){
-	    $mimeType = getimagesize($file['tmp_name'])['mime'];
-	    $size = filesize($file['tmp_name']) / 1048576;
-
-		if ($file['error'] == UPLOAD_ERR_OK && in_array($mimeType, $types) && $size <= $upload_max_filesize){
-			$type = substr($mimeType, strpos($file['type'], '/') + 1);
-			$name = preg_replace('/^\.|\.$/', '', str_shuffle($file['name'] . rand(1, 999999))) . '.' . $type;
-			if (move_uploaded_file($file['tmp_name'], $route . $name)){
-				$resize->newSize($route . $name, $route, $name, $type);
-				$response[] = $route . $name;
-			}
-
+		if ($aux = $resize->upload($file['tmp_name'], $route, $file['name'], $file['error'], $upload_max_filesize)){
+			$resize->newSize($route . $aux['name'], $route, $aux['name']);
+			$response[] = $route . $aux['name'];
 			$values = "('" . implode("'), ('", $response) . "')";
 			$mysqli->query("INSERT INTO files (file) VALUES {$values}");
 		}
