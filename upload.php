@@ -22,8 +22,6 @@ if (count($_FILES) <= $max_file_uploads){
 		if ($aux = $resize->upload($file['tmp_name'], $route, $file['name'], $file['error'], $upload_max_filesize)){
 			$resize->newSize($route . $aux['name'], $route, $aux['name']);
 			$response[] = $route . $aux['name'];
-			$values = "('" . implode("'), ('", $response) . "')";
-			$mysqli->query("INSERT INTO files (file) VALUES {$values}");
 		}
 		else{
 			$errors++;
@@ -32,6 +30,8 @@ if (count($_FILES) <= $max_file_uploads){
 
 	if ($errors < count($_FILES)){ 
 		$ok = 'yes';
+		$values = "('" . implode("'), ('", $response) . "')";
+		$mysqli->query("INSERT INTO files (file) VALUES {$values}");
 	}
 }
 
