@@ -11,13 +11,16 @@ $response = [];
 $errors = 0;
 $ok = 'no';
 $max_file_uploads = ini_get('max_file_uploads');
+$post_max_size = (int)ini_get('post_max_size');
 $upload_max_filesize = (int)ini_get('upload_max_filesize');
+
+foreach ($_FILES as $file) $sizeUploaded += $size['size'];
 
 $_POST = array_map(function($data) use ($mysqli){
 	return $mysqli->real_escape_string(strip_tags($data));
 }, $_POST);
 
-if (count($_FILES) <= $max_file_uploads){
+if (count($_FILES) <= $max_file_uploads && $sizeUploaded <= $post_max_size){
 	foreach ($_FILES as $file){
 		if ($aux = $resize->upload($file['tmp_name'], $route, $file['name'], $file['error'], $upload_max_filesize)){
 			$resize->newSize($route . $aux['name'], $route, $aux['name']);
