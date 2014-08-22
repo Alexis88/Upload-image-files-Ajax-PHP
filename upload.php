@@ -13,8 +13,9 @@ $ok = 'no';
 $max_file_uploads = ini_get('max_file_uploads');
 $post_max_size = (int)ini_get('post_max_size');
 $upload_max_filesize = (int)ini_get('upload_max_filesize');
+$sizeUploaded = 0;
 
-foreach ($_FILES as $file) $sizeUploaded += $size['size'];
+foreach ($_FILES as $file) $sizeUploaded += $file['size'];
 $sizeUploaded /= 1048576;
 
 $_POST = array_map(function($data) use ($mysqli){
