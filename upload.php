@@ -11,8 +11,7 @@ $response = [];
 $errors = 0;
 $ok = 'no';
 $max_file_uploads = ini_get('max_file_uploads');
-$upload_max_filesize = ini_get('upload_max_filesize');
-$upload_max_filesize = substr($upload_max_filesize, 0, strpos($upload_max_filesize, 'M'));
+$upload_max_filesize = (int)ini_get('upload_max_filesize');
 
 $_POST = array_map(function($data) use ($mysqli){
 	return $mysqli->real_escape_string(strip_tags($data));
