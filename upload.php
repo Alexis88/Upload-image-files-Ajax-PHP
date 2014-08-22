@@ -15,6 +15,7 @@ $post_max_size = (int)ini_get('post_max_size');
 $upload_max_filesize = (int)ini_get('upload_max_filesize');
 
 foreach ($_FILES as $file) $sizeUploaded += $size['size'];
+$sizeUploaded /= 1048576;
 
 $_POST = array_map(function($data) use ($mysqli){
 	return $mysqli->real_escape_string(strip_tags($data));
