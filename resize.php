@@ -58,7 +58,7 @@ class Resize{
 
 	public function upload($resource, $route, $oldName, $error, $upload_max_filesize){
 		$this->mimeType = getimagesize($resource)['mime'];
-		$this->name = preg_replace('/^(\.|\s)|(\.|\s)$/', '', str_shuffle($oldName . rand(1, 999999))) . '.' . substr($this->mimeType, strpos($this->mimeType, '/') + 1);
+		$this->name = preg_replace('/^(\.|\s)|(\.|\s)$/', '', str_shuffle($oldName . mt_rand(1, 999999))) . '.' . substr($this->mimeType, strpos($this->mimeType, '/') + 1);
 		$this->size = filesize($resource) / 1048576;
 		if ($error == UPLOAD_ERR_OK && in_array($this->mimeType, $this->types) && $this->size <= $upload_max_filesize){
 			if (move_uploaded_file($resource, $route . $this->name)){
