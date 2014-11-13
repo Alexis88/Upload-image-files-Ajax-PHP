@@ -20,7 +20,7 @@ $sizeUploaded /= 1048576;
 
 $_POST = array_map(function($data) use ($mysqli){
 	return $mysqli->real_escape_string(strip_tags($data));
-}, $_POST);
+}, $_POST); 
 
 if (count($_FILES) <= $max_file_uploads && $sizeUploaded <= $post_max_size){
 	foreach ($_FILES as $file){
