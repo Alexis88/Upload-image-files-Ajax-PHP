@@ -4,7 +4,7 @@ include_once 'resize.php';
 $resize = new Resize();
 $mysqli = new mysqli ('server', 'user', 'password', 'bd');
 
-if ($mysqli->connect_error) exit ('Cannot connect to the database');
+if ($mysqli->connect_error) exit ('Cannot connect to the database: ' . $mysqli->connect_error);
 
 $route = 'img/';
 $response = [];
@@ -36,7 +36,7 @@ if (count($_FILES) <= $max_file_uploads && $sizeUploaded <= $post_max_size){
 	if ($errors < count($_FILES)){ 
 		$ok = 'yes';
 		$values = "('" . implode("'), ('", $response) . "')";
-		$mysqli->query("INSERT INTO files (file) VALUES {$values}");
+		$mysqli->query("INSERT INTO files (file) VALUES {$values}") or exit ('Could not execute query: ' . $mysqli->error);
 	}
 }
 
