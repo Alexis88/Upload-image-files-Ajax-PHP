@@ -27,7 +27,7 @@ var myForm = document.getElementsByTagName("form")[0],
 
 	xhr.open("POST", url, true);
 	xhr.addEventListener("readystatechange", function(){
-	  	if (xhr.readyState < 4){
+	    if (xhr.readyState < 4){
 	      	cargando.style.opacity = 1;
 	       	output.appendChild(cargando);
 	    }
