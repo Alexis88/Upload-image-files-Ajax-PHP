@@ -58,7 +58,7 @@ var myForm = document.getElementsByTagName("form")[0],
 		        output.innerHTML = "Error: " + xhr.status; 
 		        break;
 		    }
-        }
+            }
         }, false);
         xhr.send(data);
         };
