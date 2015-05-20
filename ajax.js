@@ -5,10 +5,10 @@ var myForm = document.getElementsByTagName("form")[0],
                   new XMLHttpRequest() : 
                   new ActiveXObject("Microsoft.XMLHTTP") || 
                   new ActiveXObject("Msxml2.XMLHTTP"),
-                  elements = form.elements,
-                  total = elements.length, 
-                  url = form.action,
-                  data = new FormData();
+            elements = form.elements,
+            total = elements.length, 
+            url = form.action,
+            data = new FormData();
     
         for (var i = 0; i < total; i++){
             if (elements[i].type == "file"){
