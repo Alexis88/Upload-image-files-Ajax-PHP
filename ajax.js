@@ -5,9 +5,9 @@ var myForm = document.getElementsByTagName("form")[0],
 	   		  new XMLHttpRequest() : 
 	          new ActiveXObject("Microsoft.XMLHTTP") || 
 	  		  new ActiveXObject("Msxml2.XMLHTTP"),
-	  	elements = form.elements,
+	 elements = form.elements,
 	    total = elements.length,
-		url = form.action,
+	 url = form.action,
 	    data = new FormData(),
 	    cargando = document.getElementById("cargando"), img;
 
