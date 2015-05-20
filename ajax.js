@@ -59,9 +59,9 @@ var myForm = document.getElementsByTagName("form")[0],
 		            break;
 		    }
         }
-    }, false);
-    xhr.send(data);
-    };
+        }, false);
+        xhr.send(data);
+        };
 
 myForm.addEventListener("submit", function(event){
 	event.preventDefault();
