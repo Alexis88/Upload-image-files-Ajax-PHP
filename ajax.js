@@ -17,7 +17,7 @@ var myForm = document.getElementsByTagName("form")[0],
 	       	totalFiles = files.length;
 
            	for (var j = 0; j < totalFiles; j++){
-	       		data.append(elements[i].name + "_" + j, files[j]);
+           	    data.append(elements[i].name + "_" + j, files[j]);
 	       	}
 	    }
 	    else{
@@ -64,6 +64,6 @@ var myForm = document.getElementsByTagName("form")[0],
     };
 
 myForm.addEventListener("submit", function(event){
-	event.preventDefault();
-	ajax(this, myOutput);
+    event.preventDefault();
+    ajax(this, myOutput);
 }, false);
