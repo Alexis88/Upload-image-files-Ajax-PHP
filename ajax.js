@@ -12,7 +12,7 @@ var myForm = document.getElementsByTagName("form")[0],
 	    cargando = document.getElementById("cargando"), img;
 
 	for (var i = 0; i < total; i++){
-	if (elements[i].type == "file"){
+	    if (elements[i].type == "file"){
 	   	var files = elements[i].files,
 	       		totalFiles = files.length;
 
