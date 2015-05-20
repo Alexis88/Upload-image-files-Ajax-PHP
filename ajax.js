@@ -6,10 +6,10 @@ var myForm = document.getElementsByTagName("form")[0],
 	          new ActiveXObject("Microsoft.XMLHTTP") || 
 	  		  new ActiveXObject("Msxml2.XMLHTTP"),
 	  	elements = form.elements,
-	    	total = elements.length,
-			url = form.action,
-	    	data = new FormData(),
-	    	cargando = document.getElementById("cargando"), img;
+	      total = elements.length,
+		  url = form.action,
+	      data = new FormData(),
+	      cargando = document.getElementById("cargando"), img;
 
 	    for (var i = 0; i < total; i++){
 	       	if (elements[i].type == "file"){
