@@ -35,28 +35,28 @@ var myForm = document.getElementsByTagName("form")[0],
 	       	cargando.style.opacity = 0;
 	       	output.innerHTML = null;
 	      	switch (xhr.status){
-		        case 200:
-		         	var response = JSON.parse(xhr.responseText);
-		           	if (response.ok == "yes"){
-		                var filesResponse = response.dataFiles,
-		                  	totalFilesResponse = filesResponse.length;
+		     case 200:
+		       	var response = JSON.parse(xhr.responseText);
+		       	if (response.ok == "yes"){
+		            var filesResponse = response.dataFiles,
+		              	totalFilesResponse = filesResponse.length;
 
-		                for (var k = 0; k < totalFilesResponse; k++){
-		                  	img = document.createElement("img");
-		                  	img.src = filesResponse[k];
-		                  	output.appendChild(img);
-		                }
+		            for (var k = 0; k < totalFilesResponse; k++){
+		              	img = document.createElement("img");
+		              	img.src = filesResponse[k];
+		              	output.appendChild(img);
 		            }
-		            else{
-		               	output.innerHTML = "Error";
-		            }
-		            break;
-		        case 404:
-		            output.innerHTML = "404 Not Found";
-		            break;
-		        default:
-		            output.innerHTML = "Error: " + xhr.status; 
-		            break;
+		        }
+		        else{
+		           	output.innerHTML = "Error";
+		        }
+		        break;
+		     case 404:
+		        output.innerHTML = "404 Not Found";
+		        break;
+		     default:
+		        output.innerHTML = "Error: " + xhr.status; 
+		        break;
 		    }
         }
         }, false);
