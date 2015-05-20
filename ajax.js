@@ -4,7 +4,7 @@ var myForm = document.getElementsByTagName("form")[0],
 	    var xhr = window.XMLHttpRequest ? 
     	          new XMLHttpRequest() : 
     	          new ActiveXObject("Microsoft.XMLHTTP") || 
-        	  	  new ActiveXObject("Msxml2.XMLHTTP"),
+        	 new ActiveXObject("Msxml2.XMLHTTP"),
 	    elements = form.elements,
 	    total = elements.length,
 	    url = form.action,
