@@ -35,7 +35,7 @@ var myForm = document.getElementsByTagName("form")[0],
 	       	cargando.style.opacity = 0;
 	       	output.innerHTML = null;
 	      	switch (xhr.status){
-		     case 200:
+	      	    case 200:
 		       	var response = JSON.parse(xhr.responseText);
 		       	if (response.ok == "yes"){
 		            var filesResponse = response.dataFiles,
