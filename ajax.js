@@ -51,10 +51,10 @@ var myForm = document.getElementsByTagName("form")[0],
 		           	output.innerHTML = "Error";
 		        }
 		        break;
-		        case 404:
+		     case 404:
 		        output.innerHTML = "404 Not Found";
 		        break;
-		        default:
+		     default:
 		        output.innerHTML = "Error: " + xhr.status; 
 		        break;
 		}
