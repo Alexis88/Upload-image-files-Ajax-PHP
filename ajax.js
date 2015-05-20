@@ -14,7 +14,7 @@ var myForm = document.getElementsByTagName("form")[0],
 	for (var i = 0; i < total; i++){
 	    if (elements[i].type == "file"){
 	   	var files = elements[i].files,
-	       		totalFiles = files.length;
+	       	totalFiles = files.length;
 
            	for (var j = 0; j < totalFiles; j++){
 	       		data.append(elements[i].name + "_" + j, files[j]);
