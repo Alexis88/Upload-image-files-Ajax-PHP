@@ -2,7 +2,7 @@
 header('Content-Type: image/jpeg');
 include_once 'resize.php';
 $resize = new Resize();
-$mysqli = new mysqli ('server', 'user', 'password', 'bd');
+$mysqli = new mysqli ('server', 'user', 'password', 'db');
 
 if ($mysqli->connect_error) exit ('Cannot connect to the database: ' . $mysqli->connect_error);
 
